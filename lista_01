@@ -1,0 +1,731 @@
+QUESTÃO 1:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+struct Pessoa{
+    char nome[50];
+    int idade;
+    float altura;
+};
+
+int main() {
+	
+	setlocale(LC_ALL,"Portuguese");
+	
+    struct Pessoa pessoa1;
+
+    printf("Digite seu nome: ");
+    scanf("%s", pessoa1.nome);
+
+    printf("Digite sua idade: ");
+    scanf("%d", &pessoa1.idade);
+
+    printf("Digite sua altura: ");
+    scanf("%f", &pessoa1.altura);
+
+    printf("\nDados Pessoais:\n\n");
+    printf("Nome: %s\n", pessoa1.nome);
+    printf("Idade: %d\n", pessoa1.idade);
+    printf("Altura: %.2f\n", pessoa1.altura);
+
+    return 0;
+}
+
+QUESTÃO 2:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+struct Tipo {
+    int valorInteiro;
+    float valorFlutuante;
+    char letra;
+};
+
+int main() {
+
+    struct Tipo tipos = {35, 5.500, 'I'};
+
+    printf("Valor Inteiro: %d\n", tipos.valorInteiro);
+    
+   
+printf("Valor Flutuante: %.3f\n", tipos.valorFlutuante);
+    printf("Letra: %c\n", tipos.letra);
+
+    return 0;
+}
+
+QUESTÃO 3:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <math.h>
+
+struct Ponto {
+    float x;
+    float y;
+};
+
+    float calcularDistancia(struct Ponto p1, struct Ponto p2) {
+    float distancia = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
+    return distancia;
+}
+
+float calcularInclinacao(struct Ponto p1, struct Ponto p2) {
+    if (p2.x == p1.x) {
+        return INFINITY;
+    } else {
+        return (p2.y - p1.y) / (p2.x - p1.x);
+    }
+}
+
+int main() {
+	
+	setlocale(LC_ALL, "Portuguese");
+	
+    struct Ponto ponto1 = {1.0, 2.0};
+    struct Ponto ponto2 = {4.0, 6.0};
+
+    printf("Ponto 1: (%.2f, %.2f)\n", ponto1.x, ponto1.y);
+    printf("Ponto 2: (%.2f, %.2f)\n", ponto2.x, ponto2.y);
+
+    float distancia = calcularDistancia(ponto1, ponto2);
+    printf("\nDistância entre os pontos: %.2f\n", distancia);
+
+    
+
+   
+    float inclinacao = calcularInclinacao(ponto1, ponto2);
+    
+   
+    printf("\nInclinação da reta: %.2f\n", inclinacao);
+
+    return 0;
+}
+
+QUESTÃO 4:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+// Definição da struct Contato
+struct Contato {
+    char nome[50];
+    char telefone[20];
+};
+
+// Função para adicionar um novo contato
+void adicionarContato(struct Contato listaContatos[], int *numContatos) {
+    if (*numContatos < 100) {
+        
+       
+printf("Digite o nome do contato: ");
+        scanf(" %[^\n]", listaContatos[*numContatos].nome);
+
+        printf("Digite o número de telefone do contato: ");
+        scanf(" %[^\n]", listaContatos[*numContatos].telefone);
+
+       
+printf("Contato adicionado com sucesso!\n");
+    } else {
+        printf("A lista de contatos está cheia.\n");
+    }
+}
+
+// Função para listar todos os contatos
+void listarContatos(struct Contato listaContatos[], int numContatos) {
+    if (numContatos == 0) {
+        printf("A lista de contatos está vazia.\n");
+        return;
+    }
+
+    
+   
+printf("Lista de Contatos:\n");
+    
+    int i;
+    
+for (i = 0; i < numContatos; i++) {
+        printf("Nome: %s, Telefone: %s\n", listaContatos[i].nome, listaContatos[i].telefone);
+    }
+}
+
+// Função para buscar um contato pelo nome
+void buscarContato(struct Contato listaContatos[], int numContatos, char nomeBusca[]) {
+	int i;
+    for (i = 0; i < numContatos; i++) {
+        
+       
+if (strcmp(listaContatos[i].nome, nomeBusca) == 0) {
+            printf("Contato encontrado:\n");
+            printf("Nome: %s, Telefone: %s\n", listaContatos[i].nome, listaContatos[i].telefone);
+            
+           
+return 0;
+
+
+       
+printf("Contato não encontrado.\n");
+}
+
+int main() {
+	
+	setlocale(LC_ALL, "Portuguese");
+	
+    struct Contato listaContatos[100];
+    int numContatos = 0;
+    
+    int opcao;
+    char nomeBusca[50];
+    
+    
+    
+   
+do {
+        printf("\nMenu:\n");
+        printf("1. Adicionar Contato\n");
+        printf("2. Listar Contatos\n");
+        printf("3. Buscar Contato por Nome\n");
+        
+       
+printf("4. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+        
+        switch (opcao) {
+            case 1:
+                adicionarContato(listaContatos, &numContatos);
+
+            case 2:
+                listarContatos(listaContatos, numContatos);
+                
+            case 3:
+                printf("Digite o nome a ser buscado: ");
+                scanf(" %[^\n]", nomeBusca);
+                buscarContato(listaContatos, numContatos, nomeBusca);
+                break;
+          case 4:
+                printf("Saindo do programa.\n");
+                break;
+          default:
+                   printf("Opção inválida.\n");
+        }
+} 
+
+while (opcao != 4);
+
+    
+return 0;
+
+}
+
+QUESTÃO 5:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
+// Definição da struct Livro
+struct Livro {
+    char titulo[100];
+    char autor[100];
+    int anoPublicacao;
+};
+
+// Função para adicionar informações de um novo livro
+void adicionarLivro(struct Livro listaLivros[], int *numLivros) {
+    
+   
+        if (*numLivros < 100) {
+        printf("Digite o título do livro: ");
+        scanf(" %[^\n]", listaLivros[*numLivros].titulo);
+
+        printf("Digite o autor do livro: ");
+        scanf(" %[^\n]", listaLivros[*numLivros].autor);
+
+        printf("Digite o ano de publicação do livro: ");
+        scanf("%d", &listaLivros[*numLivros].anoPublicacao);
+
+        (*numLivros)++;
+        
+       printf("Livro adicionado com sucesso!\n");
+       } 
+	   else {
+        printf("A lista de livros está cheia.\n");
+       }
+}
+
+
+
+// Função para listar todos os livros cadastrados
+void listarLivros(struct Livro listaLivros[], int numLivros) {
+        if (numLivros == 0) {
+        printf("A lista de livros está vazia.\n");
+        
+       return 0;
+    }
+    printf("Lista de Livros:\n");
+    
+    int i;
+   
+    for (i = 0; i < numLivros; i++) {
+        
+       
+        printf("Título: %s\n", listaLivros[i].titulo);
+        printf("Autor: %s\n", listaLivros[i].autor);
+        printf("Ano de Publicação: %d\n", listaLivros[i].anoPublicacao);
+        printf("-------------------------\n");
+    }
+}
+
+
+   
+// Função para buscar livros por autor
+void buscarLivrosPorAutor(struct Livro listaLivros[], int numLivros, char autorBusca[]) {
+    int encontrados = 0, i;
+    
+        for (i = 0; i < numLivros; i++) {
+        if (strcmp(listaLivros[i].autor, autorBusca) == 0) {
+            if (encontrados == 0) {
+                printf("Livros do autor %s:\n", autorBusca); }
+            
+            }
+            }
+            
+        printf("Título: %s\n", listaLivros[i].titulo);
+            
+        printf("Ano de Publicação: %d\n", listaLivros[i].anoPublicacao);
+            
+           
+        printf("-------------------------\n");
+            encontrados++;
+        }
+    
+
+        if (encontrados == 0) {
+        printf("Nenhum livro encontrado para o autor %s.\n", autorBusca); }
+}
+
+int main() {
+    struct Livro listaLivros[100];
+    int numLivros = 0;
+    
+    int opcao;
+    char autorBusca[100];
+    
+    do {
+        printf("\nMenu:\n");
+        printf("1. Adicionar Livro\n");
+        printf("2. Listar Livros\n");
+        printf("3. Buscar Livros por Autor\n");
+        printf("4. Sair\n");
+        
+       
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+        
+        switch (opcao) {
+            case 1:
+                adicionarLivro(listaLivros, &numLivros);
+                break;
+            case 2:
+                listarLivros(listaLivros, numLivros); 
+                break;
+            case 3:
+                printf("Digite o nome do autor a ser buscado: ");
+                break;
+            case 4:
+                printf("Saindo do programa.\n");
+                break;
+            default:
+                
+               
+           printf("Opção inválida.\n");
+        }
+    } 
+}
+   
+        while (opcao != 4);
+
+return 0;
+}
+
+QUESTÃO 6:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+struct Estudante{
+    char nome[100];
+    int matricula;
+    float notas[3];
+};
+
+
+    float calcularMedia(struct Estudante aluno) {
+    float somaNotas = 0.0;
+    int i;
+    
+    for (i = 0; i < 3; i++) {
+        somaNotas += aluno.notas[i];
+    }
+    
+    return somaNotas / 3.0;
+}
+
+    int estaAprovado(struct Estudante aluno) {
+    
+   
+    float media = calcularMedia(aluno);
+    return media >= 7.0;
+}
+
+int main() {
+	
+	setlocale(LC_ALL, "Portuguese");
+	
+    struct Estudante estudante;
+    
+    printf("Digite o nome do estudante: ");
+    scanf(" %[^\n]", estudante.nome);
+    
+    printf("Digite a matrícula do estudante: ");
+    scanf("%d", &estudante.matricula);
+    
+    int i;
+    
+    for (i = 0; i < 3; i++) {
+        printf("Digite a nota %d do estudante: ", i + 1);
+        scanf("%f", &estudante.notas[i]);
+    }
+
+    printf("\nInformações do Estudante: \n\n");
+    printf("Nome: %s\n", estudante.nome);
+    printf("Matrícula: %d\n", estudante.matricula);
+    
+    
+    for (i = 0; i < 3; i++) {
+        printf("Nota %d: %.2f\n", i + 1, estudante.notas[i]);
+    }
+
+    float media = calcularMedia(estudante);
+    printf("Média: %.2f\n", media);
+    
+    
+    
+    if (estaAprovado(estudante)) {
+        
+       
+    printf("APROVADO!\n");
+    } 
+   
+    else {
+        printf("REPROVADO!\n");
+    }
+
+    return 0;
+}
+
+QUESTÃO 7:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+struct ContaBancaria {
+    char nomeTitular[100];
+    int numeroConta;
+    float saldo;
+};
+
+
+    void depositar(struct ContaBancaria *conta, float valor) {
+    if (valor > 0) {
+        conta->saldo += valor;
+        printf("Depósito de %.2f realizado com sucesso.\n", valor);
+    } else {
+        printf("Valor inválido para depósito.\n");
+    }
+}
+
+
+    void sacar(struct ContaBancaria *conta, float valor) {
+    if (valor > 0 && valor <= conta->saldo) {
+        conta->saldo -= valor;
+        printf("Saque de %.2f realizado com sucesso.\n", valor);
+    } else {
+        printf("Valor inválido para saque ou saldo insuficiente.\n");
+    }
+}
+
+    float verificarSaldo(struct ContaBancaria conta) {
+    return conta.saldo;
+}
+
+int main() {
+	
+	setlocale(LC_ALL, "Portuguese");
+	
+    struct ContaBancaria minhaConta;
+    
+    printf("Digite o nome do titular da conta: ");
+    scanf(" %[^\n]", minhaConta.nomeTitular);
+    
+    printf("Digite o número da conta: ");
+    scanf("%d", &minhaConta.numeroConta);
+    
+    minhaConta.saldo = 0.0;
+
+    printf("\n\n-------------Conta bancária criada--------------\n\n");
+    printf("Titular: %s\n", minhaConta.nomeTitular);
+    printf("Número da conta: %d\n", minhaConta.numeroConta);
+    printf("Saldo: %.2f\n", minhaConta.saldo);
+
+    depositar(&minhaConta, 100.0);
+    printf("Saldo após depósito: %.2f\n", verificarSaldo(minhaConta));
+    
+    sacar(&minhaConta, 50.0);
+    printf("Saldo após saque: %.2f\n", verificarSaldo(minhaConta));
+
+    return 0;
+}
+
+QUESTÃO 8:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
+
+struct Produto{
+    char nome[100];
+    float preco;
+    int quantidadeEstoque;
+};
+
+
+    void realizarCompra(struct Produto listaProdutos[], int numProdutos) {
+    int codigoProduto, quantidadeComprada;
+    
+    int i;
+    
+    printf("Lista de Produtos Disponíveis:\n");
+    for (i = 0; i < numProdutos; i++) {
+        printf("[%d] %s - R$ %.2f - Estoque: %d\n", i + 1, listaProdutos[i].nome, listaProdutos[i].preco, listaProdutos[i].quantidadeEstoque);
+    }
+    
+    printf("Digite o código do produto que deseja comprar: ");
+    scanf("%d", &codigoProduto);
+    codigoProduto--;  
+    
+    if (codigoProduto >= 0 && codigoProduto < numProdutos) {
+        printf("Digite a quantidade que deseja comprar: ");
+        scanf("%d", &quantidadeComprada);
+
+        if (quantidadeComprada > 0 && quantidadeComprada <= listaProdutos[codigoProduto].quantidadeEstoque) {
+            float totalCompra = listaProdutos[codigoProduto].preco * quantidadeComprada;
+            printf("Compra realizada!\n");
+            printf("Total: R$ %.2f\n", totalCompra);
+
+            listaProdutos[codigoProduto].quantidadeEstoque -= quantidadeComprada;
+        } 
+		else {
+            printf("Quantidade inválida ou estoque insuficiente.\n");
+        }
+    } 
+	else {
+        printf("Código de produto inválido.\n");
+    }
+}
+
+int main() {
+	
+	setlocale(LC_ALL, "Portuguese");
+	
+    struct Produto listaProdutos[3];  
+    int numProdutos = 3;
+    
+    strcpy(listaProdutos[0].nome, "Produto A");
+    listaProdutos[0].preco = 10.0;
+    listaProdutos[0].quantidadeEstoque = 10;
+    
+    strcpy(listaProdutos[1].nome, "Produto B");
+    listaProdutos[1].preco = 15.0;
+    listaProdutos[1].quantidadeEstoque = 15;
+    
+    strcpy(listaProdutos[2].nome, "Produto C");
+    listaProdutos[2].preco = 20.0;
+    listaProdutos[2].quantidadeEstoque = 5;
+
+    int opcao;
+    do {
+        printf("\nMenu:\n");
+        printf("1. Realizar Compra\n");
+        printf("2. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                realizarCompra(listaProdutos, numProdutos);
+                break;
+            case 2:
+                printf("Finalizado!\n");
+                break;
+            default:
+                printf("Opção inválida.\n");
+        }
+    } while (opcao != 2);
+
+    return 0;
+}
+
+
+QUESTÃO 9:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <locale.h>
+
+
+struct Funcionario{
+    char nome[100];
+    char cargo[50];
+    float salario;
+    struct tm dataAdmissao; 
+};
+
+
+void darAumento(struct Funcionario *funcionario, float percentual) {
+    if (percentual > 0) {
+        funcionario->salario += funcionario->salario * percentual / 100;
+        printf("Aumento de %.2f%% aplicado com sucesso.\n", percentual);
+    } else {
+        printf("Percentual de aumento inválido.\n");
+    }
+}
+
+    int calcularTempoNaEmpresa(struct Funcionario funcionario) {
+    time_t now;
+    time(&now);  
+    struct tm *dataAtual = localtime(&now);  
+
+    int anosPassados = dataAtual->tm_year - funcionario.dataAdmissao.tm_year;
+
+    if (dataAtual->tm_mon < funcionario.dataAdmissao.tm_mon ||
+        (dataAtual->tm_mon == funcionario.dataAdmissao.tm_mon && dataAtual->tm_mday < funcionario.dataAdmissao.tm_mday)) {
+        anosPassados--; 
+    }
+
+    return anosPassados;
+}
+
+int main() {
+	
+	setlocale(LC_ALL, "Portuguese");
+	
+    struct Funcionario funcionario;
+    
+    printf("Digite o nome do funcionário: ");
+    scanf(" %[^\n]", funcionario.nome);
+    
+    printf("Digite o cargo do funcionário: ");
+    scanf(" %[^\n]", funcionario.cargo);
+    
+    printf("Digite o salário do funcionário: ");
+    scanf("%f", &funcionario.salario);
+    
+    printf("Digite a data de admissão do funcionário (formato: dia mês ano): ");
+    scanf("%d %d %d", &funcionario.dataAdmissao.tm_mday, &funcionario.dataAdmissao.tm_mon, &funcionario.dataAdmissao.tm_year);
+    funcionario.dataAdmissao.tm_mon -= 1; 
+    
+    int opcao;
+    float percentual;
+    do {
+        printf("\nMenu:\n");
+        printf("1. Dar Aumento de Salário\n");
+        printf("2. Calcular Tempo na Empresa\n");
+        printf("3. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+        
+        switch (opcao) {
+            case 1:
+                printf("Digite o percentual de aumento: ");
+                scanf("%f", &percentual);
+                darAumento(&funcionario, percentual);
+                printf("Novo Salário: %.2f\n", funcionario.salario);
+                break;
+            case 2:
+                printf("Tempo na Empresa: %d anos\n", calcularTempoNaEmpresa(funcionario));
+                break;
+            case 3:
+                printf("Finalizado!\n");
+                break;
+            default:
+                printf("Opção inválida.\n");
+        }
+    } 
+	
+	while (opcao != 3);
+
+    return 0;
+}
+
+QUESTÃO 10:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+
+struct Moeda {
+    float dolares;
+    float euros;
+};
+
+    float converterDolaresParaEuros(float dolares, float taxa) {
+    return dolares * taxa;
+}
+
+    float converterEurosParaDolares(float euros, float taxa) {
+    return euros / taxa;
+}
+
+int main() {
+	
+	setlocale(LC_ALL, "Portuguese");
+	
+    float taxaCambio;
+    struct Moeda moeda;
+    
+    printf("Digite a taxa de câmbio (valor de 1 dólar em euros): ");
+    scanf("%f", &taxaCambio);
+
+    printf("Digite o valor em dólares: ");
+    scanf("%f", &moeda.dolares);
+    
+    moeda.euros = converterDolaresParaEuros(moeda.dolares, taxaCambio);
+    
+    printf("Valor convertido para euros: %.2f\n", moeda.euros);
+
+    printf("Digite o valor em euros: ");
+    scanf("%f", &moeda.euros);
+    
+    moeda.dolares = converterEurosParaDolares(moeda.euros, taxaCambio);
+    
+    printf("Valor convertido para dólares: %.2f\n", moeda.dolares);
+
+    return 0;
+}
+
